@@ -1,0 +1,71 @@
+[
+  {
+    "slug": "golang-tutorial",
+    "title": "Golang Tutorial",
+    "level": "Beginner",
+    "tag": "Go",
+    "lessons": [
+      {
+        "title": "Introduction & Setup",
+        "blocks": [
+          { "type": "heading", "level": 2, "text": "Go Setup" },
+          { "type": "paragraph", "text": "Install Go from golang.org. Verify with `go version`." },
+          { "type": "list", "ordered": false, "items": [
+            "Install Go",
+            "Set GOPATH and GOROOT (usually automatic)",
+            "Use `go env` to inspect config"
+          ]},
+          { "type": "heading", "level": 3, "text": "First Program" },
+          { "type": "paragraph", "text": "Create a file named main.go and run it." },
+          { "type": "code", "language": "go", "code": "package main\nimport \"fmt\"\nfunc main() {\n    fmt.Println(\"Hello, Go!\")\n}" },
+          { "type": "paragraph", "text": "Run: `go run main.go`" }
+        ]
+      },
+      {
+        "title": "Variables & Types",
+        "blocks": [
+          { "type": "heading", "level": 2, "text": "Basics" },
+          { "type": "list", "ordered": false, "items": [
+            "bool, string, int/uint, byte, rune, float64",
+            "Short declare: `x := 10`",
+            "Zero values: 0, false, \"\""
+          ]},
+          { "type": "code", "language": "go", "code": "var a int = 42\nb := \"hi\"\nvar (\n    ok bool\n    f  float64\n)" }
+        ]
+      },
+      {
+        "title": "Control Flow",
+        "blocks": [
+          { "type": "list", "ordered": false, "items": [
+            "if/else (no parentheses)",
+            "for (as while, classic, range)",
+            "switch (no fallthrough by default)"
+          ]},
+          { "type": "code", "language": "go", "code": "for i := 0; i < 3; i++ {\n    fmt.Println(i)\n}\n\nfor i < 10 { i++ }\n\nfor k, v := range []int{1,2,3} {\n    fmt.Println(k, v)\n}" }
+        ]
+      },
+      {
+        "title": "Functions & Methods",
+        "blocks": [
+          { "type": "list", "ordered": false, "items": [
+            "Multiple returns",
+            "Named returns",
+            "Methods on types"
+          ]},
+          { "type": "code", "language": "go", "code": "func add(a, b int) (int, error) {\n    return a + b, nil\n}\n\ntype Point struct{ X, Y int }\nfunc (p Point) Sum() int { return p.X + p.Y }" }
+        ]
+      },
+      {
+        "title": "Modules & Packages",
+        "blocks": [
+          { "type": "list", "ordered": false, "items": [
+            "`go mod init example.com/app`",
+            "`go get` to add deps",
+            "Package structure: one package per folder"
+          ]},
+          { "type": "code", "language": "bash", "code": "go mod init example.com/app\ngo get github.com/google/uuid" }
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,29 @@
+[
+  {
+    "slug": "announcing-codecloudworld-blogs",
+    "title": "Announcing CodeCloudWorld Blogs",
+    "date": "Oct 2025",
+    "read": "5 min",
+    "excerpt": "We are launching our new blog focused on question-solving strategies, patterns, and interview tips.",
+    "thumb": "brand",
+    "content": "# Announcing CodeCloudWorld Blogs\n\nWelcome to our new writing space. We'll share in-depth guides on problem-solving strategies, patterns, and interview preparation. Stay tuned!"
+  },
+  {
+    "slug": "mastering-sliding-window",
+    "title": "Mastering Sliding Window",
+    "date": "Oct 14, 2025",
+    "read": "7 min",
+    "excerpt": "Fixed vs variable windows, optimizations, and pitfalls.",
+    "thumb": "brand",
+    "content": "## Sliding Window\n\nLearn when and how to use sliding window patterns with examples and complexity insights."
+  },
+  {
+    "slug": "two-pointers-top-10",
+    "title": "Two Pointers: 10 Must-Know Problems",
+    "date": "Oct 12, 2025",
+    "read": "8 min",
+    "excerpt": "Classic problems you must practice with the two-pointer technique.",
+    "thumb": "brand",
+    "content": "## Two Pointers\n\nTen curated problems to master the technique, with explanations and hints."
+  }
+]

@@ -1,0 +1,26 @@
+[
+  {
+    "slug": "go-url-shortener",
+    "title": "Go URL Shortener",
+    "stack": ["Go", "Chi", "PostgreSQL", "Docker"],
+    "description": "A production-ready URL shortener with click analytics and expiring links.",
+    "github": "https://github.com/example/go-url-shortener",
+    "demo": "https://demo.example.com/go-url-shortener"
+  },
+  {
+    "slug": "nextjs-notes-app",
+    "title": "Next.js Notes App",
+    "stack": ["Next.js", "Prisma", "SQLite", "Tailwind"],
+    "description": "A simple notes app with auth, CRUD, and search.",
+    "github": "https://github.com/example/nextjs-notes-app",
+    "demo": "https://demo.example.com/nextjs-notes-app"
+  },
+  {
+    "slug": "python-news-scraper",
+    "title": "Python News Scraper",
+    "stack": ["Python", "FastAPI", "Playwright", "Redis"],
+    "description": "Aggregates tech news with scheduled crawls and a REST API.",
+    "github": "https://github.com/example/python-news-scraper",
+    "demo": "https://demo.example.com/python-news-scraper"
+  }
+]

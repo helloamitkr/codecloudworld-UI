@@ -1,0 +1,71 @@
+.page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.title {
+  font-size: 1.6rem;
+  color: #f3f4f6;
+  margin: 0;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.filterBtn {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: #e5e7eb;
+  font-size: 0.9rem;
+  padding: 0.35rem 0.6rem;
+  border-radius: 9999px;
+  cursor: pointer;
+}
+
+.filterBtnActive {
+  background: linear-gradient(135deg, var(--brand-start), var(--brand-mid));
+  border: 1px solid rgba(255,255,255,0.18);
+  color: white;
+}
+
+.list {
+  margin-top: 0.8rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+
+.item {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+  padding: 0.8rem;
+}
+
+.qTitle {
+  color: #e5e7eb;
+  margin: 0 0 6px 0;
+}
+
+.qMeta {
+  color: #9ca3af;
+  font-size: 0.85rem;
+}
+
+@media (min-width: 900px) {
+  .list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

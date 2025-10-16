@@ -1,0 +1,207 @@
+.footer {
+  background: #ffffff;
+  color: #242424;
+  padding: 2.5rem 1rem;
+  border-top: 1px solid #e5e7eb;
+  width: 100%;
+}
+
+.links {
+  margin-bottom: 0.5rem;
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.link {
+  color: #444;
+  margin: 0 12px;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
+}
+
+.link:hover {
+  color: #242424;
+}
+
+.copy {
+  font-size: 0.8rem;
+  color: #6b6b6b;
+}
+
+.copy:hover {
+  color: #bbb;
+}
+
+/* New enhanced styles */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.top {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 9999px;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: white;
+  background: linear-gradient(135deg, var(--brand-start), var(--brand-mid), var(--brand-end));
+  box-shadow: 0 6px 16px rgba(99,102,241,0.18);
+}
+
+.title {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #242424;
+}
+
+.tagline {
+  margin: 2px 0 0 0;
+  font-size: 0.85rem;
+  color: #6b6b6b;
+}
+
+/* .nav container styles are handled by its children */
+
+.navList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1rem;
+  justify-content: center;
+}
+
+/* .navItem intentionally not styled; list semantics only */
+
+.navLink {
+  color: #444;
+  text-decoration: none;
+  font-size: 0.95rem;
+  padding: 0.25rem 0.4rem;
+  border-radius: 6px;
+  transition: color 150ms ease, background-color 150ms ease;
+}
+
+.navLink:hover {
+  color: #242424;
+  background: rgba(0,0,0,0.05);
+}
+
+.socials {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.socialBtn {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  color: #444;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  transition: transform 150ms ease, background-color 150ms ease, color 150ms ease, box-shadow 150ms ease;
+}
+
+.socialBtn:hover {
+  color: #242424;
+  background: rgba(0,0,0,0.04);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.icon {
+  width: 18px;
+  height: 18px;
+}
+
+.divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, #e5e7eb, transparent);
+  margin: 1.4rem 0 1rem;
+}
+
+.bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.smallNav {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.smallLink {
+  color: #6b6b6b;
+  text-decoration: none;
+  font-size: 0.85rem;
+}
+
+.smallLink:hover {
+  color: #242424;
+  text-decoration: underline;
+}
+
+.dot {
+  color: #6b7280;
+}
+
+@media (min-width: 720px) {
+  .top {
+    grid-template-columns: 1.2fr 1fr auto;
+    align-items: center;
+  }
+}
+
+/* Tablet and below: center sections and stack bottom row if needed */
+@media (max-width: 900px) {
+  .top {
+    text-align: center;
+  }
+  .brand {
+    justify-content: center;
+  }
+  .bottom {
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+/* Small phones: reduce logo size to prevent crowding */
+@media (max-width: 400px) {
+  .logo {
+    width: 34px;
+    height: 34px;
+  }
+  .title {
+    font-size: 1rem;
+  }
+  .tagline {
+    font-size: 0.8rem;
+  }
+}
