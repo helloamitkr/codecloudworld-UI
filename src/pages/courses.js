@@ -1,15 +1,15 @@
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
 import styles from '../styles/Courses.module.css';
-import courses from '../data/courses.json';
+import { getAllItems } from '../lib/content-helpers';
 
-export default function CoursesPage() {
+export default function CoursesPage({ courses }) {
   const [q, setQ] = useState('');
   const list = useMemo(() => {
     const term = q.trim().toLowerCase();
     if (!term) return courses;
     return courses.filter((c) => {
-      const hay = [c.title, c.level, c.tag, String(c.lessons?.length || 0)]
+      const hay = [c.title, c.level, c.tag, c.description || '']
         .join(' ')
         .toLowerCase();
       return hay.includes(term);
@@ -46,10 +46,21 @@ export default function CoursesPage() {
       <div className={styles.grid}>
         {list.map((c) => (
           <article key={c.slug} className={styles.card}>
-            <div className={styles.thumb} />
+            <div className={styles.thumb}>
+              {c.image && (
+                <img 
+                  src={c.image} 
+                  alt={c.title}
+                  className={styles.courseImage}
+                  onError={(e) => {
+                    e.target.style.display = 'none';
+                  }}
+                />
+              )}
+            </div>
             <div className={styles.body}>
               <h3 className={styles.cardTitle}>{c.title}</h3>
-              <div className={styles.meta}>{c.level} • {c.lessons?.length ?? 0} lessons</div>
+              <div className={styles.meta}>{c.level} • {c.lessons || 'Multiple'} lessons</div>
               <div className={styles.actions}>
                 <span className={styles.tag}>{c.tag}</span>
                 <Link href={`/courses/${c.slug}`} className={styles.cta}>Start</Link>
@@ -60,4 +71,13 @@ export default function CoursesPage() {
       </div>
     </div>
   );
+}
+
+export async function getStaticProps() {
+  const courses = getAllItems('courses');
+  return {
+    props: {
+      courses,
+    },
+  };
 }

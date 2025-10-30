@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import styles from '../styles/Header.module.css';
+import DarkModeToggle from './DarkModeToggle';
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -83,6 +84,7 @@ export default function Header() {
           </nav>
 
           <div className={styles.actions}>
+            <DarkModeToggle />
             <Link href="/about" className={styles.cta} onClick={closeMenu}>About Author</Link>
           </div>
         </div>

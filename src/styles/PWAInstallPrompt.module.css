@@ -1,0 +1,140 @@
+.installPrompt {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  z-index: 1000;
+  max-width: 400px;
+  margin: 0 auto;
+  animation: slideUp 0.3s ease-out;
+}
+
+.promptContent {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  border: 1px solid #e5e7eb;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.promptIcon {
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.promptText {
+  flex: 1;
+}
+
+.promptText h3 {
+  margin: 0 0 4px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.promptText p {
+  margin: 0;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.promptActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.installButton {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.installButton:hover {
+  background: #2563eb;
+}
+
+.dismissButton {
+  background: transparent;
+  color: #6b7280;
+  border: none;
+  border-radius: 6px;
+  padding: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+}
+
+.dismissButton:hover {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .promptContent {
+    background: #1f2937;
+    border-color: #374151;
+  }
+  
+  .promptText h3 {
+    color: #f9fafb;
+  }
+  
+  .promptText p {
+    color: #d1d5db;
+  }
+  
+  .dismissButton:hover {
+    background: #374151;
+    color: #e5e7eb;
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 480px) {
+  .installPrompt {
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+  }
+  
+  .promptContent {
+    padding: 12px;
+  }
+  
+  .promptText h3 {
+    font-size: 15px;
+  }
+  
+  .promptText p {
+    font-size: 13px;
+  }
+}

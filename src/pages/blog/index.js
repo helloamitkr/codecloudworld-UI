@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import styles from '../../styles/Blog.module.css';
-import blogs from '../../data/blogs.json';
 import SubscribeForm from '../../components/SubscribeForm';
+import { getAllItems } from '../../lib/content-helpers';
 
-export default function BlogIndex() {
+export default function BlogIndex({ blogs }) {
   return (
     <div className={styles.page}>
       <header className={styles.header}>
@@ -30,4 +30,13 @@ export default function BlogIndex() {
       </div>
     </div>
   );
+}
+
+export async function getStaticProps() {
+  const blogs = getAllItems('blogs');
+  return {
+    props: {
+      blogs,
+    },
+  };
 }

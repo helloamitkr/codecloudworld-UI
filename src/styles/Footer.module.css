@@ -1,9 +1,10 @@
 .footer {
-  background: #ffffff;
-  color: #242424;
+  background: var(--bg-primary, #ffffff);
+  color: var(--text-primary, #242424);
   padding: 2.5rem 1rem;
-  border-top: 1px solid #e5e7eb;
+  border-top: 1px solid var(--border-color, #e5e7eb);
   width: 100%;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
 .links {
@@ -204,4 +205,72 @@
   .tagline {
     font-size: 0.8rem;
   }
+}
+
+/* Dark Mode Styles */
+:global(.dark) .footer {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  border-top-color: var(--border-color);
+}
+
+:global(.dark) .title {
+  color: var(--text-primary);
+}
+
+:global(.dark) .tagline {
+  color: var(--text-secondary);
+}
+
+:global(.dark) .navLink {
+  color: var(--text-secondary);
+}
+
+:global(.dark) .navLink:hover {
+  color: var(--text-primary);
+  background: var(--bg-hover);
+}
+
+:global(.dark) .socialBtn {
+  background: var(--bg-secondary);
+  border-color: var(--border-color);
+  color: var(--text-secondary);
+}
+
+:global(.dark) .socialBtn:hover {
+  color: var(--text-primary);
+  background: var(--bg-hover);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+:global(.dark) .divider {
+  background: linear-gradient(to right, transparent, var(--border-color), transparent);
+}
+
+:global(.dark) .copy {
+  color: var(--text-secondary);
+}
+
+:global(.dark) .smallLink {
+  color: var(--text-secondary);
+}
+
+:global(.dark) .smallLink:hover {
+  color: var(--text-primary);
+}
+
+:global(.dark) .dot {
+  color: var(--text-secondary);
+}
+
+:global(.dark) .links {
+  color: var(--text-secondary);
+}
+
+:global(.dark) .link {
+  color: var(--text-secondary);
+}
+
+:global(.dark) .link:hover {
+  color: var(--text-primary);
 }

@@ -5,6 +5,33 @@
   --brand-start: #60a5fa; /* blue */
   --brand-mid: #22d3ee;   /* cyan */
   --brand-end: #a78bfa;   /* violet */
+  
+  /* Dark mode variables */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f9fafb;
+  --bg-hover: #f3f4f6;
+  --text-primary: #111827;
+  --text-secondary: #6b7280;
+  --border-color: #e5e7eb;
+  --accent-color: #3b82f6;
+}
+
+.dark {
+  --background: #0f172a;
+  --foreground: #f1f5f9;
+  --subtext: #94a3b8;
+  --brand-start: #60a5fa;
+  --brand-mid: #22d3ee;
+  --brand-end: #a78bfa;
+  
+  /* Dark mode variables */
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --bg-hover: #334155;
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --border-color: #334155;
+  --accent-color: #60a5fa;
 }
 
 html,
@@ -34,3 +61,155 @@ a {
 
 /* Force light color scheme globally, independent of OS preference */
 html { color-scheme: light; }
+
+/* Code syntax highlighting styles */
+pre {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+code {
+  background: #f8f9fa;
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 0.9em;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+}
+
+/* Prism.js theme - Light */
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: #708090;
+}
+
+.token.punctuation {
+  color: #999;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+  color: #905;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+  color: #690;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+  color: #9a6e3a;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+  color: #07a;
+}
+
+.token.function,
+.token.class-name {
+  color: #dd4a68;
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+  color: #e90;
+}
+
+/* Dark Mode Transitions and Styles */
+html {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark mode specific styles */
+.dark body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+/* Dark mode for common elements */
+.dark h1,
+.dark h2,
+.dark h3,
+.dark h4,
+.dark h5,
+.dark h6 {
+  color: var(--text-primary);
+}
+
+.dark p {
+  color: var(--text-secondary);
+}
+
+.dark a {
+  color: var(--accent-color);
+}
+
+.dark a:hover {
+  color: var(--brand-start);
+}
+
+/* Dark mode for cards and containers */
+.dark [class*="card"],
+.dark [class*="container"],
+.dark [class*="section"] {
+  background-color: var(--bg-secondary);
+  border-color: var(--border-color);
+}
+
+/* Dark mode for inputs and buttons */
+.dark input,
+.dark textarea,
+.dark select {
+  background-color: var(--bg-secondary);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+.dark input:focus,
+.dark textarea:focus,
+.dark select:focus {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.1);
+}
+
+/* Dark mode for code blocks */
+.dark pre,
+.dark code {
+  background-color: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+/* Ensure smooth transitions for all elements */
+* {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}

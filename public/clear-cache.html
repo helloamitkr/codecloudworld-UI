@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Clear Course Cache</title>
+</head>
+<body>
+    <h1>Clear Course Cache</h1>
+    <button onclick="clearCache()">Clear All Course Data</button>
+    <div id="result"></div>
+
+    <script>
+        function clearCache() {
+            // Clear localStorage
+            const keys = Object.keys(localStorage);
+            const courseKeys = keys.filter(key => key.includes('course'));
+            
+            courseKeys.forEach(key => {
+                localStorage.removeItem(key);
+                console.log('Removed:', key);
+            });
+            
+            // Clear sessionStorage
+            const sessionKeys = Object.keys(sessionStorage);
+            const sessionCourseKeys = sessionKeys.filter(key => key.includes('course'));
+            
+            sessionCourseKeys.forEach(key => {
+                sessionStorage.removeItem(key);
+                console.log('Removed from session:', key);
+            });
+            
+            document.getElementById('result').innerHTML = `
+                <p>Cleared ${courseKeys.length} localStorage items</p>
+                <p>Cleared ${sessionCourseKeys.length} sessionStorage items</p>
+                <p><strong>Please refresh your browser and try again.</strong></p>
+            `;
+        }
+    </script>
+</body>
+</html>

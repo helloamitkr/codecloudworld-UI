@@ -175,11 +175,66 @@
 }
 
 .contentList {
-  list-style: none;
+  list-style: none !important;
+  list-style-type: none !important;
   margin: 0;
   padding: 0.6rem 0.6rem 0.8rem 0.6rem;
   display: grid;
   gap: 0.5rem;
+}
+
+.contentList li {
+  list-style: none !important;
+  list-style-type: none !important;
+}
+
+.contentList li::marker {
+  display: none !important;
+  content: none !important;
+}
+
+.contentList li::before {
+  display: none !important;
+  content: none !important;
+}
+
+/* Additional overrides for any nested lists or browser defaults */
+.left ul,
+.left ol,
+.left li {
+  list-style: none !important;
+  list-style-type: none !important;
+  padding-left: 0 !important;
+}
+
+.left ul li::marker,
+.left ol li::marker,
+.left li::marker {
+  display: none !important;
+  content: none !important;
+}
+
+.left ul li::before,
+.left ol li::before,
+.left li::before {
+  display: none !important;
+  content: none !important;
+}
+
+/* Mobile drawer overrides */
+.drawer ul,
+.drawer ol,
+.drawer li {
+  list-style: none !important;
+  list-style-type: none !important;
+  padding-left: 0 !important;
+}
+
+.drawer ul li::marker,
+.drawer ol li::marker,
+.drawer li::marker {
+  display: none !important;
+  content: none !important;
 }
 
 .item {
@@ -251,16 +306,34 @@
   text-underline-offset: 2px;
 }
 
-.lessonPanelText > ul,
-.lessonPanelText > ol { color: #374151; padding-left: 1.25rem; }
-
-/* Improve list item readability and markers */
-.lessonPanelText ul { list-style: disc; }
-.lessonPanelText ol { list-style: decimal; }
+/* Remove list styling from course content */
+.lessonPanelText ul,
+.lessonPanelText ol { 
+  list-style: none; 
+  padding-left: 0; 
+  color: #374151;
+}
 .lessonPanelText ul li,
-.lessonPanelText ol li { margin: 0.3rem 0; }
-.lessonPanelText ul li::marker { color: #3b82f6; } /* blue bullets */
-.lessonPanelText ol li::marker { color: #64748b; font-weight: 600; }
+.lessonPanelText ol li { 
+  margin: 0.3rem 0; 
+}
+.lessonPanelText ul li::marker,
+.lessonPanelText ol li::marker { 
+  display: none; 
+}
+
+/* Strong override to ensure no list styling */
+.lessonPanelText * {
+  list-style: none !important;
+}
+.lessonPanelText ul,
+.lessonPanelText ol {
+  list-style-type: none !important;
+  padding-left: 0 !important;
+}
+.lessonPanelText li::before {
+  content: none !important;
+}
 .lessonPanelText li > code {
   background: #f3f4f6;
   border: 1px solid #e5e7eb;
@@ -286,7 +359,12 @@
   width: 8px;
   height: 8px;
   border-radius: 9999px;
-  background: linear-gradient(135deg, var(--brand-start), var(--brand-mid));
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 600;
 }
 
 .lessonTitle {
@@ -305,7 +383,10 @@
 }
 
 .completed .bullet {
-  background: linear-gradient(135deg, #22c55e, #16a34a);
+  background: transparent;
+  color: #16a34a;
+  width: 16px;
+  height: 16px;
 }
 
 .right {
@@ -378,10 +459,88 @@
   background: #111827; /* slate-900 */
   color: #e5e7eb; /* gray-200 */
   cursor: pointer;
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  transition: all 0.2s ease;
 }
 
 .copyBtn:hover {
   background: #0f172a;
+  border-color: #334155;
+}
+
+.copyBtn.copied {
+  background: #065f46; /* green-800 */
+  border-color: #10b981; /* green-500 */
+  color: #d1fae5; /* green-100 */
+}
+
+.copyIcon {
+  font-size: 0.875rem;
+}
+
+/* Enhanced code blocks with copy buttons */
+.lessonPanelText pre {
+  position: relative !important;
+  background: #0a0f1a !important;
+  color: #e5e7eb !important;
+  padding: 1rem !important;
+  padding-top: 2.5rem !important; /* Make room for copy button */
+  border-radius: 8px !important;
+  overflow-x: auto !important;
+  margin: 1rem 0 !important;
+  border: 1px solid #1e293b !important;
+}
+
+.lessonPanelText pre code {
+  background: none;
+  color: inherit;
+  padding: 0;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+/* Copy button wrapper positioning */
+.copy-button-wrapper {
+  position: relative !important;
+}
+
+.copy-button {
+  position: absolute !important;
+  top: 0.5rem !important;
+  right: 0.5rem !important;
+  z-index: 10 !important;
+  opacity: 0.9 !important;
+}
+
+.copy-button:hover {
+  opacity: 1 !important;
+}
+
+/* Specific styling for bash and command blocks */
+.lessonPanelText pre:has(code),
+.lessonPanelText pre {
+  position: relative !important;
+  min-height: 3rem !important;
+}
+
+/* Ensure copy button is visible on all code blocks */
+.lessonPanelText pre .copy-button,
+.lessonContent pre .copy-button {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.25rem !important;
+  font-size: 0.75rem !important;
+  padding: 0.25rem 0.5rem !important;
+  background: #111827 !important;
+  border: 1px solid #374151 !important;
+  color: #e5e7eb !important;
+  border-radius: 6px !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
 }
 
 .codePre {
@@ -445,3 +604,444 @@
 /* Stronger override: no markers for generated steps list */
 .lessonPanelText ul.checklist { list-style: none; padding-left: 0; }
 .lessonPanelText ul.checklist li::marker { content: none; color: transparent; }
+
+/* Course info panel styles */
+.courseInfo {
+  margin-top: 2rem;
+  padding: 1rem;
+  background: #f8fafc;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+.infoItem {
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+  color: #475569;
+}
+
+.infoItem:last-child {
+  margin-bottom: 0;
+}
+
+.infoItem strong {
+  color: #1e293b;
+  margin-right: 0.5rem;
+}
+
+/* Course content styles */
+.courseContent {
+  flex: 1;
+  max-width: none;
+}
+
+.courseActions {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e2e8f0;
+}
+
+.backLink {
+  color: #3b82f6;
+  text-decoration: none;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+}
+
+.backLink:hover {
+  color: #1d4ed8;
+  text-decoration: underline;
+}
+
+/* Active section styling */
+.itemLink.active {
+  background: #eff6ff;
+  border-color: #3b82f6;
+  color: #1d4ed8;
+}
+
+.itemLink.active .bullet {
+  background: transparent;
+  color: #3b82f6;
+}
+
+/* Progress Bar Styles */
+.progressContainer {
+  margin-bottom: 1.5rem;
+  background: white;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e2e8f0;
+}
+
+.progressInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.progressText {
+  font-weight: 600;
+  color: #374151;
+  font-size: 0.875rem;
+}
+
+.progressPercent {
+  font-weight: 700;
+  color: #3b82f6;
+  font-size: 0.875rem;
+}
+
+.progressActions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.resetButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0.25rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  opacity: 0.7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.resetButton:hover {
+  opacity: 1;
+  background: rgba(239, 68, 68, 0.1);
+  transform: rotate(180deg);
+}
+
+.resetButton:active {
+  transform: rotate(180deg) scale(0.95);
+}
+
+/* Modal Styles */
+.modalBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  backdrop-filter: blur(2px);
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1001;
+  max-width: 90vw;
+  width: 400px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modalContent {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  border: 1px solid #e5e7eb;
+}
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 1.5rem 0 1.5rem;
+}
+
+.modalTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #374151;
+  margin: 0;
+}
+
+.modalClose {
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+  color: #6b7280;
+  padding: 0.25rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.modalClose:hover {
+  color: #374151;
+  background: #f3f4f6;
+}
+
+.modalBody {
+  padding: 1.5rem;
+}
+
+.modalBody p {
+  margin: 0 0 1rem 0;
+  color: #374151;
+  line-height: 1.5;
+}
+
+.modalBody p:last-child {
+  margin-bottom: 0;
+}
+
+.modalWarning {
+  color: #dc2626 !important;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.modalFooter {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0 1.5rem 1.5rem 1.5rem;
+  justify-content: flex-end;
+}
+
+.modalButtonSecondary {
+  background: #f9fafb;
+  color: #374151;
+  border: 1px solid #d1d5db;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.modalButtonSecondary:hover {
+  background: #f3f4f6;
+  border-color: #9ca3af;
+}
+
+.modalButtonPrimary {
+  background: #dc2626;
+  color: white;
+  border: 1px solid #dc2626;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.modalButtonPrimary:hover {
+  background: #b91c1c;
+  border-color: #b91c1c;
+}
+
+.modalButtonPrimary:active {
+  transform: scale(0.98);
+}
+
+.progressBar {
+  width: 100%;
+  height: 8px;
+  background: #e5e7eb;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+  border-radius: 4px;
+  transition: width 0.5s ease-in-out;
+  max-width: 100%;
+  min-width: 0%;
+}
+
+/* Header Content */
+.headerContent {
+  flex: 1;
+}
+
+/* Lesson Navigation Styles */
+.lessonNavigation {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background: #f8fafc;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+.navButtons {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navButton {
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  background: white;
+  color: #374151;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 0.875rem;
+}
+
+.navButton:hover:not(:disabled) {
+  background: #f3f4f6;
+  border-color: #9ca3af;
+}
+
+.navButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.prevButton:hover:not(:disabled) {
+  background: #eff6ff;
+  border-color: #3b82f6;
+  color: #1d4ed8;
+}
+
+.nextButton {
+  background: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+}
+
+.nextButton:hover:not(:disabled) {
+  background: #1d4ed8;
+  border-color: #1d4ed8;
+}
+
+.completeButton {
+  background: #10b981;
+  color: white;
+  border-color: #10b981;
+}
+
+.completeButton:hover:not(:disabled) {
+  background: #059669;
+  border-color: #059669;
+}
+
+.completeButton.completed {
+  background: #22c55e;
+  border-color: #22c55e;
+}
+
+.completeButton.completed:hover:not(:disabled) {
+  background: #dc2626;
+  border-color: #dc2626;
+}
+
+/* Lesson Content */
+.lessonContent {
+  flex: 1;
+  max-width: none;
+  line-height: 1.6;
+}
+
+.lessonContent h2 {
+  color: #1f2937;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.lessonContent h3 {
+  color: #374151;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.lessonContent ul, .lessonContent ol {
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+}
+
+.lessonContent li {
+  margin-bottom: 0.5rem;
+}
+
+.lessonContent code {
+  background: #f1f5f9;
+  padding: 0.125rem 0.25rem;
+  border-radius: 3px;
+  font-size: 0.875rem;
+}
+
+.lessonContent pre {
+  background: #1f2937;
+  color: #f9fafb;
+  padding: 1rem;
+  border-radius: 6px;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+.lessonContent pre code {
+  background: none;
+  padding: 0;
+  color: inherit;
+}
+
+/* Completed Lesson Styles */
+.itemLink.completed {
+  background: #f0fdf4;
+  border-color: #22c55e;
+  color: #15803d;
+}
+
+.completedBullet {
+  background: #22c55e !important;
+  color: white !important;
+  font-weight: 600;
+  font-size: 0.75rem;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .progressInfo {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .progressActions {
+    align-self: flex-end;
+  }
+  
+  .navButtons {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .navButton {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .progressContainer {
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+  }
+  
+  .lessonNavigation {
+    margin: 1.5rem 0;
+    padding: 1rem;
+  }
+}

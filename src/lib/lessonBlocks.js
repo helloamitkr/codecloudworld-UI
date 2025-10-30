@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from '../styles/CourseDetail.module.css';
 
 export function LessonBlocks({ blocks = [] }) {
-  const onCopy = async (code) => {
+  const [copiedIndex, setCopiedIndex] = useState(null);
+
+  const onCopy = async (code, index) => {
     try {
       await navigator.clipboard.writeText(code || '');
-    } catch {}
+      setCopiedIndex(index);
+      setTimeout(() => setCopiedIndex(null), 2000); // Reset after 2 seconds
+    } catch (error) {
+      console.error('Failed to copy code:', error);
+    }
   };
 
   return (
@@ -29,11 +35,29 @@ export function LessonBlocks({ blocks = [] }) {
             );
           case 'code': {
             const lang = blk.language ? String(blk.language).toLowerCase() : '';
+            const isCopied = copiedIndex === i;
             return (
               <div key={i} className={styles.codeWrap}>
                 <div className={styles.codeHeader}>
                   <span className={styles.codeLang}>{lang || 'code'}</span>
-                  <button type="button" className={styles.copyBtn} onClick={() => onCopy(blk.code)} aria-label="Copy code">Copy</button>
+                  <button 
+                    type="button" 
+                    className={`${styles.copyBtn} ${isCopied ? styles.copied : ''}`}
+                    onClick={() => onCopy(blk.code, i)} 
+                    aria-label="Copy code"
+                  >
+                    {isCopied ? (
+                      <>
+                        <span className={styles.copyIcon}>✓</span>
+                        Copied!
+                      </>
+                    ) : (
+                      <>
+                        <span className={styles.copyIcon}>📋</span>
+                        Copy
+                      </>
+                    )}
+                  </button>
                 </div>
                 <pre className={styles.codePre}><code>{blk.code}</code></pre>
               </div>

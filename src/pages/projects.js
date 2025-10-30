@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
 import styles from '../styles/Courses.module.css';
-import projects from '../data/projects.json';
+import { getAllItems } from '../lib/content-helpers';
 
-export default function ProjectsPage() {
+export default function ProjectsPage({ projects }) {
   const [q, setQ] = useState('');
   const list = useMemo(() => {
     const term = q.trim().toLowerCase();
@@ -52,8 +52,9 @@ export default function ProjectsPage() {
               <div className={styles.meta}>{Array.isArray(p.stack) ? p.stack.join(' • ') : ''}</div>
               <p style={{ margin: '0.35rem 0 0.6rem', color: '#444' }}>{p.description}</p>
               <div className={styles.actions}>
-                <span className={styles.tag}>Project</span>
+                <span className={styles.tag}>{p.difficulty || 'Project'}</span>
                 <div style={{ display: 'flex', gap: 8 }}>
+                  <Link href={`/projects/${p.slug}`} className={styles.cta}>View</Link>
                   {p.github && (
                     <a href={p.github} target="_blank" rel="noopener noreferrer" className={styles.cta}>GitHub</a>
                   )}
@@ -68,4 +69,13 @@ export default function ProjectsPage() {
       </div>
     </div>
   );
+}
+
+export async function getStaticProps() {
+  const projects = getAllItems('projects');
+  return {
+    props: {
+      projects,
+    },
+  };
 }
